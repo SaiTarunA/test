@@ -1,0 +1,70 @@
+import React from "react";
+import "../styles/footer.css";
+import "../styles/nav.css";
+import { design, socialMedia, navLinks, footer } from "../config";
+// import "../../styles/contact.css";
+// import { ContactUs } from "../helpers/ContactUs";
+// import Toast from "../helpers/Toast";
+// import { ReactComponent as ContactDoodles } from "../../assets/contact_doodles.svg";
+
+const Footer = (props) => {
+  return (
+    <section id="footer">
+      <div className="vertical-line"></div>
+      <div className="footer workspace">
+        <div className="footer-top-section">
+          {footer[0].showNavLinks && (
+            <nav className="nav-options-copy footer-nav-options">
+              <ul>
+                {navLinks.map((obj) => (
+                  <li key={obj.name}>
+                    <a href={obj.url}>
+                      {obj.icon && (
+                        <div className="footer-icons">
+                          <img src={obj.icon} alt={obj.name} />
+                        </div>
+                      )}
+                      {obj.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )}
+          {footer[0].showSocialMedia && (
+            <div className="media">
+              {socialMedia.map((obj) => (
+                <div
+                  key={obj.name}
+                  className="media-icon"
+                  onClick={() => {
+                    window.open(obj.url);
+                  }}
+                >
+                  <img src={obj.icon} alt="x" />
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+        {design && (
+          <div
+            className="credits"
+            onClick={() => {
+              window.open(design[0].url);
+            }}
+          >
+            Design By: <b className="primary-color">{design[0].name}</b>
+          </div>
+        )}
+        {footer[0].footerText && (
+          <div className="footer-bottom-section">
+            <div>{footer[0].footerText}</div>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+};
+
+export default Footer;
